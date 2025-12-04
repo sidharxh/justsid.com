@@ -1,0 +1,148 @@
+:root {
+    /* Default fallbacks, JS will override */
+    --bg-color: #F5F2EB;
+    --primary: #E94E34;
+    --secondary: #009B77;
+    --accent: #F4B942;
+    --text-main: #232323;
+    --surface: #FFFFFF;
+}
+
+::selection {
+    background-color: var(--primary);
+    color: var(--surface);
+}
+
+/* === SCANLINES === */
+.scanlines {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(
+        to bottom,
+        rgba(255,255,255,0),
+        rgba(255,255,255,0) 50%,
+        rgba(0,0,0,0.02) 50%,
+        rgba(0,0,0,0.02)
+    );
+    background-size: 100% 4px;
+    pointer-events: none;
+    z-index: 50;
+}
+
+/* === COMPONENTS === */
+.neo-window {
+    border: 3px solid var(--text-main);
+    box-shadow: 5px 5px 0px 0px var(--text-main); /* Slightly smaller shadow */
+    background: var(--surface);
+    transition: all 0.2s ease;
+}
+
+.neo-titlebar {
+    padding: 8px 12px;
+    font-family: 'Space Mono', monospace;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    border-bottom: 3px solid var(--text-main);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--text-main);
+    color: var(--surface);
+}
+
+.titlebar-primary { background: var(--primary); color: var(--surface); }
+.titlebar-secondary { background: var(--surface); color: var(--text-main); border-bottom: 3px solid var(--text-main); }
+
+.neo-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 20px;
+    border: 2px solid var(--text-main);
+    font-weight: bold;
+    font-family: 'Space Mono', monospace;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    box-shadow: 3px 3px 0px 0px var(--text-main);
+    transition: all 0.1s ease;
+    background: var(--surface);
+    color: var(--text-main);
+    cursor: pointer;
+}
+.neo-btn:active { transform: translate(2px, 2px); box-shadow: 0px 0px 0px 0px; }
+.btn-primary { background: var(--primary); color: var(--surface); }
+.btn-black { background: var(--text-main); color: var(--surface); }
+
+.tag {
+    background: var(--surface);
+    border: 1px solid var(--text-main);
+    padding: 2px 6px;
+    font-size: 0.7rem;
+    font-family: 'Space Mono', monospace;
+    font-weight: bold;
+    box-shadow: 2px 2px 0px 0px rgba(0,0,0,0.1);
+}
+
+/* === NAVIGATION TABS (RESPONSIVE) === */
+.neo-tab {
+    padding: 12px;
+    font-family: 'Space Mono', monospace;
+    font-weight: bold;
+    font-size: 0.8rem;
+    color: #666;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.2s;
+    background: rgba(255,255,255,0.5);
+    border: 2px solid transparent; /* Default border */
+}
+
+/* Mobile View: Grid buttons */
+@media (max-width: 767px) {
+    .neo-tab {
+        border: 2px solid var(--text-main); /* Full borders on mobile */
+        background: var(--surface);
+        margin: 2px;
+        box-shadow: 2px 2px 0px 0px rgba(0,0,0,0.1);
+    }
+    .active-tab {
+        background: var(--text-main) !important;
+        color: var(--surface) !important;
+        box-shadow: inset 2px 2px 0px 0px rgba(0,0,0,0.3);
+    }
+}
+
+/* Desktop View: Tab style */
+@media (min-width: 768px) {
+    .neo-tab {
+        padding: 10px 24px;
+        border: 3px solid transparent;
+        border-bottom: none;
+        justify-content: flex-start;
+        background: transparent;
+    }
+    .neo-tab:hover {
+        color: var(--text-main);
+        background: rgba(0,0,0,0.05);
+    }
+    .active-tab {
+        background: var(--text-main) !important;
+        color: var(--surface) !important;
+        border: 3px solid var(--text-main);
+        border-bottom: none;
+        transform: translateY(3px);
+        position: relative;
+        z-index: 10;
+    }
+}
+
+/* Animations */
+@keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+.animate-slide-up { animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+
+@keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+.animate-marquee { display: inline-block; animation: marquee 20s linear infinite; }
+
+.hidden { display: none !important; }
