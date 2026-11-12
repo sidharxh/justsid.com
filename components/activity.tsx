@@ -1,6 +1,86 @@
 'use client';
-import { Cutie } from '@/components/cutie';
+
 import { useEffect, useState } from 'react';
-type Activity = { status: 'connected' | 'unavailable'; updatedAt?: string; conversations?: number; messages?: number; categories?: { label: string; count: number }[] };
-const example = [{ label: 'Building & debugging', count: 45 }, { label: 'Learning & exploring', count: 30 }, { label: 'Writing & thinking', count: 25 }];
-export function ActivityPanel() { const [data, setData] = useState<Activity>({ status: 'unavailable' }); const [demo, setDemo] = useState(false); const [failed, setFailed] = useState(false); useEffect(() => { const controller = new AbortController(); const update = async () => { try { const response = await fetch('/api/activity', { cache: 'no-store', signal: controller.signal }); if (!response.ok) throw new Error(); setData(await response.json()); setFailed(false); } catch { if (!controller.signal.aborted) setFailed(true); } }; void update(); const timer = setInterval(update, 60000); return () => { controller.abort(); clearInterval(timer); }; }, []); const connected = data.status === 'connected'; const categories = demo ? example : data.categories || []; const total = categories.reduce((n, v) => n + v.count, 0); return <div className="activity-card"><div className="activity-top"><span className="activity-mascot"><Cutie kind="robot"/> HUMAN × CHATGPT</span><span className="data-badge"><i className={connected && !demo && !failed ? 'status-dot' : 'quiet-dot'}/>{demo ? 'SAMPLE DATA' : failed ? 'UPDATE UNAVAILABLE' : connected ? 'APPROVED SUMMARY' : 'NOT CONNECTED'}</span></div><div className="activity-body"><div className="activity-intro"><h3>My ChatGPT use.<br/><em>The broad picture.</em></h3><p>Broad topics and rounded counts, once I’ve approved a summary. My conversations stay private.</p><button className="text-button" onClick={() => setDemo(!demo)}>{demo ? '← Back to real status' : 'See an example ↗'}</button></div><div className="activity-visual"><div className="metrics"><div><strong>{demo ? '120' : connected ? data.conversations : '—'}</strong><span>conversations, rounded</span></div><div><strong>{demo ? '850' : connected ? data.messages : '—'}</strong><span>questions, rounded</span></div></div>{total ? <div className="category-bars">{categories.map((category, i) => <div key={category.label}><div><span><i style={{ background: ['#c56a45','#899870','#ac9ab8'][i % 3] }}/>{category.label}</span><span>{Math.round(category.count / total * 100)}%</span></div><div className="bar-track"><span style={{ width: `${category.count / total * 100}%`, background: ['#c56a45','#899870','#ac9ab8'][i % 3] }}/></div></div>)}</div> : <div className="awaiting"><div className="signal-bars" aria-hidden="true">{[18,32,23,45,29,38,24,48,30,20,36,25,42,18,34,26,44,28,39,22].map((h,i) => <i key={i} style={{ height: h, animationDelay: `${i * .12}s` }}/>)}</div><p>No real usage data connected yet.<br/>Try the example to see how this will look.</p></div>}</div></div><div className="activity-bottom"><span>▣ &nbsp; {demo ? 'Illustrative numbers. Not Sid’s actual usage.' : 'Only approved, aggregated counts. No chat content.'}</span><span>{connected && !demo && data.updatedAt ? `Updated ${data.updatedAt} · checks every minute` : 'Privacy comes first. Always.'}</span></div></div>; }
+
+type Activity =
+  | { status: 'unavailable' }
+  | {
+      status: 'connected';
+      updatedAt: string;
+      conversations: number;
+      messages: number;
+      categories: { label: string; count: number }[];
+    };
+
+const categoryColors = ['#a6533b', '#617847', '#8d609a'];
+
+export function ActivityPanel() {
+  const [data, setData] = useState<Activity>();
+  const [failed, setFailed] = useState(false);
+
+  useEffect(() => {
+    const controller = new AbortController();
+
+    async function update() {
+      try {
+        const response = await fetch('/api/activity', { cache: 'no-store', signal: controller.signal });
+        if (!response.ok) throw new Error('Could not load activity');
+        const snapshot: Activity = await response.json();
+        if (controller.signal.aborted) return;
+        setData(snapshot);
+        setFailed(false);
+      } catch {
+        if (!controller.signal.aborted) setFailed(true);
+      }
+    }
+
+    void update();
+    const timer = setInterval(update, 60_000);
+    return () => {
+      controller.abort();
+      clearInterval(timer);
+    };
+  }, []);
+
+  const snapshot = data?.status === 'connected' ? data : undefined;
+  const categorized = snapshot?.categories.reduce((total, category) => total + category.count, 0) ?? 0;
+
+  return (
+    <div className="activity-card">
+      {snapshot ? (
+        <>
+          <div className="portfolio-activity-content">
+            <div className="metrics">
+              <div><strong>{snapshot.conversations.toLocaleString('en-IN')}</strong><span>Conversations, rounded</span></div>
+              <div><strong>{snapshot.messages.toLocaleString('en-IN')}</strong><span>Messages sent, rounded</span></div>
+            </div>
+            {categorized > 0 && (
+              <div className="category-bars" aria-label="Share of displayed categories">
+                {snapshot.categories.map(({ label, count }, index) => {
+                  const share = count / categorized * 100;
+                  const color = categoryColors[index % categoryColors.length];
+                  return (
+                    <div key={label}>
+                      <div><span>{label}</span><span>{Math.round(share)}%</span></div>
+                      <div className="bar-track" aria-hidden="true">
+                        <span style={{ width: `${share}%`, background: color }} />
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+          <div className="activity-bottom">
+            <span>Aggregated counts and broad topics</span>
+            <span>{failed ? 'Refresh unavailable · ' : ''}Updated <time dateTime={snapshot.updatedAt}>{snapshot.updatedAt}</time></span>
+          </div>
+        </>
+      ) : (
+        <p className="portfolio-activity-empty" role="status">
+          {failed ? 'Usage data is temporarily unavailable.' : data ? 'No usage data has been published yet.' : 'Loading usage data…'}
+        </p>
+      )}
+    </div>
+  );
+}

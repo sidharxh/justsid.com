@@ -53,3 +53,106 @@ main>section[id]{scroll-margin-top:120px}
 .project-art .project-symbol .cutie{position:static;inset:auto;opacity:1;stroke:none;fill:none}
 .cosmic-star.star-a{top:24px;right:23%;z-index:3}
 @media(max-width:420px){.cosmic-star.star-a{top:34px;right:23%}}
+
+.header .portfolio-nav {
+  display: flex;
+  align-items: center;
+  gap: clamp(12px, 3vw, 28px);
+  font: 600 14px var(--sans);
+  white-space: nowrap;
+}
+
+.header .portfolio-nav > a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+
+.portfolio-nav a:hover,
+.portfolio-nav a[aria-current="page"],
+.portfolio-footer a:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.portfolio-home {
+  max-width: 760px;
+  padding-block: clamp(50px, 9vw, 105px) clamp(56px, 9vw, 100px);
+}
+
+.portfolio-home > section[id] {
+  scroll-margin-top: 120px;
+}
+
+.portfolio-intro h1 {
+  font-size: clamp(54px, 10vw, 88px);
+  line-height: 1.04;
+  letter-spacing: -.06em;
+}
+
+.portfolio-intro p {
+  max-width: 52ch;
+  margin: 18px 0 24px;
+  color: var(--muted);
+  font-size: clamp(16px, 2vw, 19px);
+  line-height: 1.65;
+}
+
+.portfolio-usage {
+  margin-top: clamp(44px, 8vw, 80px);
+  padding-top: clamp(30px, 5vw, 48px);
+  border-top: 1px solid var(--line);
+}
+
+.portfolio-usage h2 {
+  margin: 0 0 18px;
+  font-size: clamp(27px, 4vw, 36px);
+  letter-spacing: -.04em;
+}
+
+.portfolio-usage .activity-card {
+  box-shadow: none;
+}
+
+.portfolio-activity-content,
+.portfolio-activity-empty {
+  padding: clamp(18px, 4vw, 32px);
+}
+
+.portfolio-activity-empty {
+  margin: 0;
+  color: var(--muted);
+  font-size: 15px;
+}
+
+.portfolio-usage .category-bars > div > div:first-child,
+.portfolio-usage .metrics span,
+.portfolio-usage .activity-bottom {
+  font-size: 12px;
+}
+
+.portfolio-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding-block: 20px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 13px;
+}
+
+@media (max-width: 800px) {
+  .header.wrap {
+    flex-direction: row;
+    padding-inline: 12px;
+  }
+
+  .header .portfolio-nav {
+    font-size: 13px;
+  }
+
+  .portfolio-home > section[id] {
+    scroll-margin-top: 80px;
+  }
+}
