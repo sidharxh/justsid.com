@@ -52,3 +52,12 @@ No analytics/tracking scripts are included. Animations honor reduced-motion pref
 ## Single-page navigation
 
 The portfolio is one page with a sticky, labeled icon navigation bar: About, Projects, Interests, AI & me, Blog, and Contact. Active sections are highlighted as the visitor scrolls. All posts appear in the Blog section; individual article URLs remain available for sharing and search. The old `/blog` listing redirects to `/#blog` so existing bookmarks still work. Warm peach, butter yellow, mint, lilac, and rose backgrounds keep each section distinct. Personality copy is based on the owner's stated interests in AI, building, playful design, animation, and clear communication; no private chat history is used.
+
+
+## Profile and project gallery
+
+Current profile: Forward Deployed Engineer at TimeDoc, working remotely and directly with healthcare practitioners. Profile metadata, structured data, and social previews use the same role.
+
+`lib/site.ts` contains the public project descriptions, filter tags, and origin (Personal or Work). The gallery starts with six cards, provides simple category filters, and can reveal the full collection. Project descriptions cover the subject without asserting release or implementation status. Personal projects were summarized from owner-authorized ChatGPT project names, available discussions, and local project material. Unclear names such as The Bat Project, Agent 0, Director, and Cyber Play are excluded pending descriptions; sensitive personal conversations are not published.
+
+LinkedIn buttons use a blue background and appear beside the name in the introduction and in About.
