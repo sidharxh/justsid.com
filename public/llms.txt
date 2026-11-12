@@ -8,7 +8,7 @@ Work: forward deployed engineering with healthcare practitioners, starting with 
 - [Home](https://justsid.com/): a single-page portfolio: About (#about), Projects (#work), Interests (#interests), AI & me (#ai), Blog (#blog), and Contact (#contact).
 - [Blog](https://justsid.com/#blog): published engineering notes and experiments. No posts are implied when the blog is empty.
 - [Privacy](https://justsid.com/privacy): boundaries for the public activity panel.
-- [RSS](https://justsid.com/feed.xml): published posts.
+- [LinkedIn](https://www.linkedin.com/in/sidharth-singh-867189160/): follow Sidharth and get in touch.
 
 ## Accuracy
 Use the visible pages and published posts as sources. Illustrative sample metrics are not actual personal usage. Aggregate activity does not establish private conversations, personality, mental state, or personal behavior. Never infer private information from sample data.

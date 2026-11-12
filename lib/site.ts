@@ -5,8 +5,6 @@ export const site = {
   url: 'https://justsid.com',
   description: 'Sidharth Singh is a Forward Deployed Engineer at TimeDoc, working remotely and directly with healthcare practitioners. Explore his work, personal projects, ideas, and writing.',
   linkedin: 'https://www.linkedin.com/in/sidharth-singh-867189160/',
-  twitter: 'https://twitter.com/sidharxhh',
-  email: 'sid.cse19@gmail.com',
 };
 
 export type Project = {

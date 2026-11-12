@@ -1,4 +1,6 @@
-import { getPosts } from '@/lib/posts';
 import { site } from '@/lib/site';
-const escapeXml = (s:string) => s.replace(/[<>&"']/g,c=>({'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;',"'":'&apos;'}[c]!));
-export function GET() { const items=getPosts().map(p=>`<item><title>${escapeXml(p.title)}</title><link>${site.url}/blog/${encodeURIComponent(p.slug)}</link><guid>${site.url}/blog/${encodeURIComponent(p.slug)}</guid><description>${escapeXml(p.description)}</description><pubDate>${new Date(p.date).toUTCString()}</pubDate></item>`).join(''); return new Response(`<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>Just Sid — Blog</title><link>${site.url}/#blog</link><description>Engineering notes and curious detours by Sidharth Singh.</description><language>en</language>${items}</channel></rss>`,{headers:{'Content-Type':'application/rss+xml; charset=utf-8'}}); }
+
+// Old follow links now lead to the owner's preferred destination.
+export function GET() {
+  return Response.redirect(site.linkedin, 308);
+}

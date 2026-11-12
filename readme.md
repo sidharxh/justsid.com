@@ -18,7 +18,7 @@ Open http://127.0.0.1:3000. For production: `npm run build`, then `npm start`. R
 - `lib/site.ts`: identity, links and projects. Existing portfolio details were retained; verify that they remain current before publishing.
 - `app/page.tsx`: homepage copy and sections. The thinking principles are editorial copy for review, not inferred from private history.
 - `components/playground.tsx`: interests, animated portrait, interactive thought portal, pointer-following eye, chaos palette, motion controls, and India clock.
-- `content/posts/*.md`: blog posts with `title`, `description`, quoted ISO `date`, `category`, and `published: true`. Unpublished and future-dated posts are excluded from the site, RSS and sitemap. `first-note.md` is an unpublished starter.
+- `content/posts/*.md`: blog posts with `title`, `description`, quoted ISO `date`, `category`, and `published: true`. Unpublished and future-dated posts are excluded from the site and sitemap. `first-note.md` is an unpublished starter.
 
 Blog HTML is trusted owner-authored Markdown. Do not use this renderer for untrusted user submissions. Add an HTML sanitizer before accepting third-party writing. Publishing a new post requires a rebuild/redeploy so the homepage and blog are consistent.
 
@@ -41,7 +41,7 @@ Minimum publication size: five conversations. Rounding and suppression reduce ex
 
 ## SEO and answer discovery
 
-Server-rendered semantic pages, individual blog URLs, canonical metadata, generated social preview, Person/WebSite and BlogPosting structured data, sitemap, correctly named robots.txt, RSS, and a concise `llms.txt`. These help discovery but cannot guarantee rankings, AI inclusion, or rich results. The site uses `https://justsid.com` as its canonical origin; update `lib/site.ts` if the domain changes.
+Server-rendered semantic pages, individual blog URLs, canonical metadata, generated social preview, Person/WebSite and BlogPosting structured data, sitemap, correctly named robots.txt and a concise `llms.txt`. These help discovery but cannot guarantee rankings, AI inclusion, or rich results. The site uses `https://justsid.com` as its canonical origin; update `lib/site.ts` if the domain changes.
 
 ## Hosting
 
@@ -68,3 +68,8 @@ LinkedIn buttons use a blue background and appear beside the name in the introdu
 The portfolio leads with people and problems, reflecting the owner's stated strength and current forward deployed engineering role. The skills section groups capabilities and supporting technologies instead of treating vendors, models, frameworks, and languages as interchangeable tools. OpenAI API and Amazon Bedrock are described as model integrations; OpenAPI specification expertise is not inferred. Project names pair existing brands with clear functional descriptions, and non-AI utilities are filtered separately from AI projects.
 
 The AI section includes an interactive four-step example (Understand, Explore, Build, Check), explicitly labeled as an example rather than a private conversation. This illustrates an approach without claiming measured usage, hidden personal knowledge, or actual chat content. The existing approved aggregate usage boundary remains in place.
+
+
+## External links
+
+LinkedIn is the only outbound follow/contact destination. The RSS follow link and X profile link have been removed, as has RSS autodiscovery metadata. The legacy `/feed.xml` URL redirects to LinkedIn. Same-page navigation, blog article links, and the privacy page remain internal.
