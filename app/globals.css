@@ -68,6 +68,22 @@ main>section[id]{scroll-margin-top:120px}
   min-height: 44px;
 }
 
+.header .portfolio-nav > .portfolio-blog-link {
+  gap: 5px;
+  padding: 0 14px;
+  border: 1px solid var(--ink);
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.header .portfolio-nav > .portfolio-blog-link:hover,
+.header .portfolio-nav > .portfolio-blog-link[aria-current="page"] {
+  background: #f4cfbf;
+  color: var(--ink);
+  text-decoration: none;
+}
+
 .portfolio-nav a:hover,
 .portfolio-nav a[aria-current="page"],
 .portfolio-footer a:hover {
@@ -128,7 +144,12 @@ main>section[id]{scroll-margin-top:120px}
   }
 
   .header .portfolio-nav {
-    font-size: 13px;
+    gap: 10px;
+    font-size: 12px;
+  }
+
+  .header .portfolio-nav > .portfolio-blog-link {
+    padding-inline: 11px;
   }
 
   .portfolio-home > section[id] {

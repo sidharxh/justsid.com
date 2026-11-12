@@ -9,8 +9,12 @@ export function Navigation() {
   return (
     <nav className="portfolio-nav" aria-label="Main navigation">
       <Link href="/#ai">ChatGPT usage</Link>
-      <Link href="/blog" aria-current={pathname === '/blog' || pathname.startsWith('/blog/') ? 'page' : undefined}>
-        Blog
+      <Link
+        className="portfolio-blog-link"
+        href="/blog"
+        aria-current={pathname === '/blog' || pathname.startsWith('/blog/') ? 'page' : undefined}
+      >
+        Read the blog <span aria-hidden="true">↗</span>
       </Link>
     </nav>
   );
