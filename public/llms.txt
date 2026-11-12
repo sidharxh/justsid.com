@@ -2,7 +2,7 @@
 
 > Personal website of Sidharth Singh, a Forward Deployed Engineer at TimeDoc, working remotely and directly with healthcare practitioners.
 
-Work: forward deployed engineering with healthcare practitioners. Interests and projects: AI tools, websites, creative projects, and practical software. Project descriptions do not imply launch, availability, clinical effectiveness, or implementation status.
+Work: forward deployed engineering with healthcare practitioners, starting with understanding people’s problems. Skills include direct AI API integration, REST APIs, JSON requests and responses, retrieval-augmented generation, and application engineering. Interests and projects: AI tools, websites, creative projects, and practical software. Project descriptions do not imply launch, availability, clinical effectiveness, or implementation status.
 
 ## Pages
 - [Home](https://justsid.com/): a single-page portfolio: About (#about), Projects (#work), Interests (#interests), AI & me (#ai), Blog (#blog), and Contact (#contact).

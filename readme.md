@@ -61,3 +61,10 @@ Current profile: Forward Deployed Engineer at TimeDoc, working remotely and dire
 `lib/site.ts` contains the public project descriptions, filter tags, and origin (Personal or Work). The gallery starts with six cards, provides simple category filters, and can reveal the full collection. Project descriptions cover the subject without asserting release or implementation status. Personal projects were summarized from owner-authorized ChatGPT project names, available discussions, and local project material. Unclear names such as The Bat Project, Agent 0, Director, and Cyber Play are excluded pending descriptions; sensitive personal conversations are not published.
 
 LinkedIn buttons use a blue background and appear beside the name in the introduction and in About.
+
+
+## Editorial and technical wording
+
+The portfolio leads with people and problems, reflecting the owner's stated strength and current forward deployed engineering role. The skills section groups capabilities and supporting technologies instead of treating vendors, models, frameworks, and languages as interchangeable tools. OpenAI API and Amazon Bedrock are described as model integrations; OpenAPI specification expertise is not inferred. Project names pair existing brands with clear functional descriptions, and non-AI utilities are filtered separately from AI projects.
+
+The AI section includes an interactive four-step example (Understand, Explore, Build, Check), explicitly labeled as an example rather than a private conversation. This illustrates an approach without claiming measured usage, hidden personal knowledge, or actual chat content. The existing approved aggregate usage boundary remains in place.

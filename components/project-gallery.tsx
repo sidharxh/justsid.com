@@ -6,7 +6,8 @@ import type { Project } from '@/lib/site';
 const filters = [
   { label: 'All', icon: '✳' },
   { label: 'Personal', icon: '☺' },
-  { label: 'AI & tools', icon: '⌘' },
+  { label: 'AI', icon: '✦' },
+  { label: 'Everyday tools', icon: '⌘' },
   { label: 'Websites', icon: '↗' },
   { label: 'Creative', icon: '✎' },
 ];
@@ -35,7 +36,7 @@ export function ProjectGallery({ projects }: { projects: Project[] }) {
         <div className="project-copy">
           <p className="eyebrow">{project.kind}</p><h3>{project.title}</h3><p>{project.description}</p>
           {project.stack?.length ? <div className="stack">{project.stack.map(tag => <span key={tag}>{tag}</span>)}</div> : null}
-          <details><summary>A little more <span>+</span></summary><p>{project.detail}</p></details>
+          <details><summary>About this project <span>+</span></summary><p>{project.detail}</p></details>
         </div>
       </article>)}
     </div>
