@@ -56,10 +56,17 @@ main>section[id]{scroll-margin-top:120px}
 
 .header .portfolio-nav {
   display: flex;
+  margin-left: auto;
   align-items: center;
   gap: clamp(12px, 3vw, 28px);
   font: 600 14px var(--sans);
   white-space: nowrap;
+}
+
+.header.wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .header .portfolio-nav > a {

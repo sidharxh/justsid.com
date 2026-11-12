@@ -14,7 +14,7 @@ export function Navigation() {
         href="/blog"
         aria-current={pathname === '/blog' || pathname.startsWith('/blog/') ? 'page' : undefined}
       >
-        Read the blog <span aria-hidden="true">↗</span>
+        Blogs <span aria-hidden="true">↗</span>
       </Link>
     </nav>
   );
