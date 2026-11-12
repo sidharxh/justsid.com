@@ -1,0 +1,8 @@
+import { notFound } from 'next/navigation';
+import Link from 'next/link';
+import { marked } from 'marked';
+import { getPost, getPosts } from '@/lib/posts';
+import { site } from '@/lib/site';
+export function generateStaticParams() { return getPosts().map(({ slug }) => ({ slug })); }
+export async function generateMetadata({ params }: { params: Promise<{slug:string}> }) { const post = getPost((await params).slug); if (!post) return {}; return { title: post.title, description: post.description, alternates: { canonical: `/blog/${post.slug}` }, openGraph: { type: 'article', title: post.title, description: post.description, publishedTime: post.date, authors: [site.name] } }; }
+export default async function Article({ params }: { params: Promise<{slug:string}> }) { const post = getPost((await params).slug); if (!post) notFound(); const html = await marked.parse(post.content); return <main id="main" className="wrap"><article className="prose"><Link className="text-link" href="/#blog">← Back to the blog</Link><p className="eyebrow" style={{marginTop:40}}>{post.category}</p><h1>{post.title}</h1><div className="article-meta">Sidharth Singh · <time dateTime={post.date}>{post.date}</time> · {post.readingTime} min read</div><p>{post.description}</p><div dangerouslySetInnerHTML={{__html: html}}/><script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify({ '@context':'https://schema.org', '@type':'BlogPosting', headline:post.title, description:post.description, datePublished:post.date, author:{'@type':'Person', name:site.name, url:site.url}, mainEntityOfPage:`${site.url}/blog/${post.slug}` }).replace(/</g,'\\u003c')}}/></article></main>; }
