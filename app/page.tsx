@@ -32,17 +32,30 @@ export default function Home() {
   return (
     <main id="main" className="wrap portfolio-home">
       <section id="home" className="portfolio-intro" aria-labelledby="intro-title">
-        <h1 id="intro-title">I’m Sid.</h1>
-        <p>
-          I’m Sidharth Singh, a Forward Deployed Engineer at TimeDoc. I work directly
-          with healthcare practitioners to understand where they get stuck and build
-          software that helps.
-        </p>
-        <SocialLinks compact />
-      </section>
+        <div className="profile-heading">
+          <span className="profile-kicker"><span className="profile-spark" aria-hidden="true">✳</span> THE HUMAN BEHIND THE PROMPTS</span>
+          <h1 id="intro-title">Sid<span className="profile-period">.</span></h1>
+          <p className="profile-lede">Applied AI engineer. Curious by default. Building things with people in mind.</p>
+          <SocialLinks compact />
+        </div>
 
+        <div className="profile-facts" aria-label="Profile">
+          <article className="profile-fact profile-fact-role">
+            <span className="profile-icon" aria-hidden="true">⌘</span>
+            <div><span className="profile-label">THE DAY JOB</span><h2>Forward Deployed Engineer</h2><p>At TimeDoc, working with healthcare teams to turn real problems into useful software.</p></div>
+          </article>
+          <article className="profile-fact profile-fact-strength">
+            <span className="profile-icon" aria-hidden="true">◎</span>
+            <div><span className="profile-label">THE SWEET SPOT</span><h2>People × product × AI</h2><p>Get close to the problem. Make a version people can actually use.</p></div>
+          </article>
+          <article className="profile-fact profile-fact-base">
+            <span className="profile-icon" aria-hidden="true">↗</span>
+            <div><span className="profile-label">CURRENT BASE</span><h2>India · working remotely</h2><p>Usually one question away from a new rabbit hole.</p></div>
+          </article>
+        </div>
+      </section>
       <section id="ai" className="portfolio-usage" aria-labelledby="usage-title">
-        <h2 id="usage-title">ChatGPT usage</h2>
+        <div className="usage-section-heading"><span className="profile-kicker"><span className="profile-spark" aria-hidden="true">✳</span> A WINDOW INTO MY AI HABITS</span><h2 id="usage-title">So, what do I ask ChatGPT?</h2></div>
         <ActivityPanel />
       </section>
 

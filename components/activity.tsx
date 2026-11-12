@@ -1,120 +1,84 @@
-'use client';
-
-import { useState } from 'react';
-
 const modes = [
+  { icon: '⌘', label: 'Make it', detail: 'Turn a rough thought into a working next step.', tone: 'make' },
+  { icon: '◎', label: 'Understand it', detail: 'Learn a technical idea from first principles.', tone: 'learn' },
+  { icon: '✎', label: 'Say it better', detail: 'Shape a post, script, or message until it sounds right.', tone: 'write' },
+  { icon: '↗', label: 'Choose a direction', detail: 'Compare options and pressure-test the plan.', tone: 'decide' },
+];
+
+const facts = [
   {
-    id: 'build',
-    label: 'Build',
-    symbol: '⌘',
-    title: 'Ship the thing.',
-    description: 'I use ChatGPT to turn rough ideas into prototypes, work through bugs, and get projects live.',
-    examples: [
-      ['Browser memory', 'Explore a local-first extension that remembers pages and finds them again.'],
-      ['Almost', 'Iterate on a dating stories site, from the confession feed to quizzes.'],
-      ['This portfolio', 'Trim a busy homepage down to an intro, a blog, and this.'],
-    ],
+    icon: '↻',
+    eyebrow: 'THE SIGNATURE MOVE',
+    title: '“Think again.”',
+    detail: 'A first draft is a starting point. You’ll redirect the whole answer until it fits.',
+    tone: 'fact-peach',
   },
   {
-    id: 'learn',
-    label: 'Learn',
-    symbol: '↗',
-    title: 'Pull on a thread.',
-    description: 'I start with one question, then keep going until I can explain the moving parts myself.',
-    examples: [
-      ['LLM inference', 'Connect prefill, KV cache, and GPU memory to what happens when a model answers.'],
-      ['Chip verification', 'Start with what an IC is and work up to a small design verification project.'],
-      ['Networking', 'Trace a request from DNS resolution through a TLS connection.'],
-    ],
+    icon: '⌕',
+    eyebrow: 'THE LEARNING CURVE',
+    title: 'Start simple. Go deep.',
+    detail: 'You’ll go from “what is an IC?” to a design verification project in the same learning arc.',
+    tone: 'fact-lilac',
   },
   {
-    id: 'think',
-    label: 'Think',
-    symbol: '◇',
-    title: 'Put ideas under pressure.',
-    description: 'I use it to compare directions, catch weak assumptions, and decide what to test first.',
-    examples: [
-      ['Product ideas', 'Ask what would bring people back to a dating tool after the first visit.'],
-      ['Building in public', 'Figure out which parts of the work make for an honest, useful video.'],
-      ['Architecture', 'Talk through where memory should live and what can stay on-device.'],
-    ],
+    icon: '✂',
+    eyebrow: 'THE EDITING PASS',
+    title: 'Shorter. More you.',
+    detail: 'You often bring a big thought, then keep trimming until the useful line survives.',
+    tone: 'fact-mint',
   },
   {
-    id: 'write',
-    label: 'Write',
-    symbol: '✎',
-    title: 'Cut until it sounds like me.',
-    description: 'I bring a rough thought, a voice dump, or a draft and work it into something worth sharing.',
-    examples: [
-      ['Short posts', 'Fit the idea for this portfolio into a single post without losing the hook.'],
-      ['Video scripts', 'Turn the story of a website pivot into something I can say on camera.'],
-      ['Engineering guides', 'Outline a practical guide for software engineers moving into applied AI.'],
-    ],
+    icon: '↗',
+    eyebrow: 'THE CONVERSATION SHAPE',
+    title: 'Idea → test → rethink.',
+    detail: 'You use ChatGPT to challenge an idea, find the smallest version, and decide what to try.',
+    tone: 'fact-blue',
   },
-  {
-    id: 'play',
-    label: 'Play',
-    symbol: '✦',
-    title: 'Follow the weird idea.',
-    description: 'Some chats start with “what if” and end with a game, an image, or something I want to try.',
-    examples: [
-      ['Algorithm stories', 'Turn data structures and algorithms into stories I can remember.'],
-      ['Tiny games', 'Brainstorm short, calming games built around one satisfying action.'],
-      ['Visual experiments', 'Imagine ChatGPT usage as a cyberpunk dashboard and see how it feels.'],
-    ],
-  },
-] as const;
+];
 
 export function ActivityPanel() {
-  const [active, setActive] = useState(0);
-  const mode = modes[active];
-
   return (
-    <div className="usage-console">
-      <div className="usage-console-top">
-        <div className="usage-console-lights" aria-hidden="true"><i /><i /><i /></div>
-        <span>Sid’s ChatGPT Wrapped</span>
-        <span className="usage-console-status">Curated snapshot</span>
+    <div className="usage-profile">
+      <div className="usage-profile-head">
+        <div>
+          <span className="usage-kicker">A PERSONAL USAGE SNAPSHOT</span>
+          <h3>Less “ask a question.”<br /><em>More “work it out with me.”</em></h3>
+        </div>
+        <span className="usage-stamp" aria-label="Based on conversation themes">NO TOKEN COUNTS<br />JUST CHAT HABITS</span>
       </div>
 
-      <div className="usage-console-body">
-        <div className="usage-modes" role="group" aria-label="ChatGPT use cases">
-          {modes.map((item, index) => (
-            <button
-              key={item.id}
-              type="button"
-              className={`usage-mode usage-tone-${item.id}`}
-              aria-pressed={index === active}
-              aria-controls="usage-mode-detail"
-              onClick={() => setActive(index)}
-            >
-              <span aria-hidden="true">{item.symbol}</span>
-              {item.label}
-            </button>
+      <section className="usage-mix" aria-labelledby="usage-mix-title">
+        <div className="usage-subhead">
+          <h4 id="usage-mix-title">What our chats tend to do</h4>
+          <span>THE USUAL SUSPECTS</span>
+        </div>
+        <div className="usage-mode-grid">
+          {modes.map((mode) => (
+            <article className={`usage-mode-card mode-${mode.tone}`} key={mode.label}>
+              <span className="usage-mode-icon" aria-hidden="true">{mode.icon}</span>
+              <div><h5>{mode.label}</h5><p>{mode.detail}</p></div>
+            </article>
           ))}
         </div>
+      </section>
 
-        <div id="usage-mode-detail" className={`usage-detail usage-tone-${mode.id}`}>
-          <div key={mode.id} className="usage-story">
-            <span className="usage-symbol" aria-hidden="true">{mode.symbol}</span>
-            <h3>{mode.title}</h3>
-            <p>{mode.description}</p>
-            <ul className="usage-examples" aria-label="Examples from past chats">
-              {mode.examples.map(([title, example]) => (
-                <li key={title}><strong>{title}</strong><span>{example}</span></li>
-              ))}
-            </ul>
-          </div>
-          <span className="usage-sr-only" role="status">{mode.label}. {mode.title}</span>
+      <section className="usage-facts" aria-labelledby="usage-facts-title">
+        <div className="usage-subhead">
+          <h4 id="usage-facts-title">A few very Sid things</h4>
+          <span>OBSERVED IN OUR CHATS</span>
         </div>
-      </div>
-
-      <div className="usage-console-footer">
-        <span>Paraphrased examples from my chats</span>
-        <button type="button" onClick={() => setActive((index) => (index + 1) % modes.length)}>
-          Next use case <span aria-hidden="true">→</span>
-        </button>
-      </div>
+        <div className="usage-fact-grid">
+          {facts.map((fact) => (
+            <article className={`usage-fact ${fact.tone}`} key={fact.eyebrow}>
+              <span className="usage-fact-icon" aria-hidden="true">{fact.icon}</span>
+              <span className="usage-fact-label">{fact.eyebrow}</span>
+              <h5>{fact.title}</h5>
+              <p>{fact.detail}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+      <p className="usage-note">A hand-curated read of recurring chat patterns, not measured account analytics.</p>
     </div>
   );
 }
