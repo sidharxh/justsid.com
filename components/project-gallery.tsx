@@ -1,12 +1,13 @@
 'use client';
+import { Cutie } from '@/components/cutie';
 
 import { useState } from 'react';
 import type { Project } from '@/lib/site';
 
 const filters = [
-  { label: 'All', icon: '✳' },
+  { label: 'All', icon: <Cutie kind="blob"/> },
   { label: 'Personal', icon: '☺' },
-  { label: 'AI', icon: '✦' },
+  { label: 'AI', icon: <Cutie kind="robot"/> },
   { label: 'Everyday tools', icon: '⌘' },
   { label: 'Websites', icon: '↗' },
   { label: 'Creative', icon: '✎' },
@@ -29,7 +30,7 @@ export function ProjectGallery({ projects }: { projects: Project[] }) {
       {visible.map(project => <article className="project" key={project.title}>
         <div className={`project-art ${project.color}`}>
           <span className="project-number">{project.origin.toUpperCase()} PROJECT</span>
-          <span className="project-symbol" aria-hidden="true">{project.symbol}</span>
+          <span className="project-symbol" aria-hidden="true">{project.symbol === 'cat' ? <Cutie kind="cat"/> : project.symbol === 'robot' ? <Cutie kind="robot"/> : project.symbol}</span>
           <span className="art-caption">{project.caption}</span>
           <svg viewBox="0 0 300 200" aria-hidden="true"><ellipse cx="150" cy="100" rx="110" ry="55"/><ellipse cx="150" cy="100" rx="55" ry="90"/><path d="M10 100h280M150 10v180"/></svg>
         </div>

@@ -1,11 +1,12 @@
 'use client';
+import { Cutie } from '@/components/cutie';
 
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
 const faces = [
   { name: 'Fox', icon: '' },
-  { name: 'Ideas', icon: '✦' },
+  { name: 'Bunny', icon: '' },
   { name: 'Code', icon: '</>' },
   { name: 'Care', icon: '♡' },
   { name: 'People', icon: '☺' },
@@ -59,12 +60,12 @@ export function BlogGame() {
   }
 
   return <section className={`blog-game${complete ? ' game-complete' : ''}`} aria-labelledby="game-title">
-    <div className="game-header"><div><p className="eyebrow">A LITTLE GAME WHILE YOU WAIT</p><h2 id="game-title">A match for your curiosity.</h2></div><span className="game-flower" aria-hidden="true">✳</span></div>
+    <div className="game-header"><div><p className="eyebrow">A LITTLE GAME WHILE YOU WAIT</p><h2 id="game-title">A match for your curiosity.</h2></div><span className="game-flower" aria-hidden="true"><Cutie kind="bunny"/></span></div>
     <div className="game-score"><span><strong>{matched.length}/6</strong> pairs</span><span><strong>{moves}</strong> {moves === 1 ? 'try' : 'tries'}</span><span>No timer. No rush.</span></div>
     <div className="memory-board" role="group" aria-label="Matching game, twelve cards">{deck.map((face, index) => {
       const isMatched = matched.includes(face);
       const revealed = open.includes(index) || isMatched;
-      return <button className={`memory-card face-${face}${revealed ? ' revealed' : ''}${isMatched ? ' matched' : ''}`} key={index} type="button" disabled={isMatched} aria-label={isMatched ? `${faces[face].name}, matched, card ${index + 1}` : revealed ? `${faces[face].name}, card ${index + 1}` : `Reveal card ${index + 1}`} onClick={() => reveal(index)}>{revealed ? <><span className="memory-face" aria-hidden="true">{face === 0 ? <Image src="/fox.svg" width={45} height={45} alt=""/> : faces[face].icon}</span><span className="memory-name" aria-hidden="true">{faces[face].name}</span>{isMatched ? <span className="match-check" aria-hidden="true">✓</span> : null}</> : <><span className="card-doodle" aria-hidden="true">✧</span><span className="card-number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span></>}</button>;
+      return <button className={`memory-card face-${face}${revealed ? ' revealed' : ''}${isMatched ? ' matched' : ''}`} key={index} type="button" disabled={isMatched} aria-label={isMatched ? `${faces[face].name}, matched, card ${index + 1}` : revealed ? `${faces[face].name}, card ${index + 1}` : `Reveal card ${index + 1}`} onClick={() => reveal(index)}>{revealed ? <><span className="memory-face" aria-hidden="true">{face === 0 ? <Image src="/fox.svg" width={45} height={45} alt=""/> : face === 1 ? <Cutie kind="bunny"/> : faces[face].icon}</span><span className="memory-name" aria-hidden="true">{faces[face].name}</span>{isMatched ? <span className="match-check" aria-hidden="true">✓</span> : null}</> : <><span className="card-doodle" aria-hidden="true"><Cutie kind="blob"/></span><span className="card-number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span></>}</button>;
     })}</div>
     <p className="game-message" role="status">{message}</p>
     <div className="game-bottom"><span>{complete ? 'Good things come in pairs. Words come next.' : 'People, ideas, code… some things belong together.'}</span><button type="button" onClick={shuffle}>{complete ? 'Play again' : 'New shuffle'} <span aria-hidden="true">↻</span></button></div>

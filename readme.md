@@ -78,3 +78,8 @@ LinkedIn (`https://www.linkedin.com/in/justsid/`) and X (`https://x.com/sidharxh
 ## Blog waiting game
 
 `components/blog-game.tsx` provides a twelve-card, six-pair matching game on the empty blog page. It has no timer, account, analytics, persistence, or external service. Cards are native keyboard-accessible buttons, mismatch timers are cleaned up, pairs and moves are announced, and New shuffle resets the round. The game appears only while there are no published posts.
+
+
+## Mascots
+
+`components/cutie.tsx` contains the decorative cat, bunny, robot, and smiling-blob SVG mascots. They replace starburst decorations across the homepage, project gallery, AI section, and blog game. The fox remains the brand avatar and browser icon. Mascots use gentle movement and respect reduced-motion preferences.
