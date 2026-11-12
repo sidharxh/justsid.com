@@ -51,7 +51,7 @@ No analytics/tracking scripts are included. Animations honor reduced-motion pref
 
 ## Single-page navigation
 
-The portfolio is one page with a sticky, labeled icon navigation bar: About, Projects, Interests, AI & me, Blog, and Contact. Active sections are highlighted as the visitor scrolls. All posts appear in the Blog section; individual article URLs remain available for sharing and search. The old `/blog` listing redirects to `/#blog` so existing bookmarks still work. Warm peach, butter yellow, mint, lilac, and rose backgrounds keep each section distinct. Personality copy is based on the owner's stated interests in AI, building, playful design, animation, and clear communication; no private chat history is used.
+The portfolio is one page with a sticky, labeled icon navigation bar: About, Projects, Interests, AI & me, Blog, and Contact. Active sections are highlighted as the visitor scrolls. The Blog navigation item and homepage blog buttons open `/blog`; individual article URLs remain available for sharing and search. Before the first post, `/blog` shows a coming-soon page with a small, keyboard-accessible matching game. Once posts are published, it automatically shows the post listing. Warm peach, butter yellow, mint, lilac, and rose backgrounds keep each section distinct. Personality copy is based on the owner's stated interests in AI, building, playful design, animation, and clear communication; no private chat history is used.
 
 
 ## Profile and project gallery
@@ -73,3 +73,8 @@ The AI section includes an interactive four-step example (Understand, Explore, B
 ## External links
 
 LinkedIn is the only outbound follow/contact destination. The RSS follow link and X profile link have been removed, as has RSS autodiscovery metadata. The legacy `/feed.xml` URL redirects to LinkedIn. Same-page navigation, blog article links, and the privacy page remain internal.
+
+
+## Blog waiting game
+
+`components/blog-game.tsx` provides a twelve-card, six-pair matching game on the empty blog page. It has no timer, account, analytics, persistence, or external service. Cards are native keyboard-accessible buttons, mismatch timers are cleaned up, pairs and moves are announced, and New shuffle resets the round. The game appears only while there are no published posts.

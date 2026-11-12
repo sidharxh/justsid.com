@@ -37,5 +37,5 @@ export function Navigation() {
     };
   }, [pathname]);
 
-  return <nav className="section-nav" aria-label="Page sections">{sections.map(({ id, label, path }) => <a key={id} href={pathname === '/' ? `#${id}` : `/#${id}`} aria-current={pathname === '/' && active === id ? 'location' : undefined}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={path}/></svg><span>{label}</span></a>)}</nav>;
+  return <nav className="section-nav" aria-label="Page sections">{sections.map(({ id, label, path }) => <a key={id} href={id === 'blog' ? '/blog' : pathname === '/' ? `#${id}` : `/#${id}`}  aria-current={id === 'blog' && pathname.startsWith('/blog') ? 'page' : pathname === '/' && active === id ? 'location' : undefined}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={path}/></svg><span>{label}</span></a>)}</nav>;
 }
