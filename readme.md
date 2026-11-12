@@ -60,7 +60,7 @@ Current profile: Forward Deployed Engineer at TimeDoc, working remotely and dire
 
 `lib/site.ts` contains the public project descriptions, filter tags, and origin (Personal or Work). The gallery starts with six cards, provides simple category filters, and can reveal the full collection. Project descriptions cover the subject without asserting release or implementation status. Personal projects were summarized from owner-authorized ChatGPT project names, available discussions, and local project material. Unclear names such as The Bat Project, Agent 0, Director, and Cyber Play are excluded pending descriptions; sensitive personal conversations are not published.
 
-LinkedIn buttons use a blue background and appear beside the name in the introduction and in About.
+LinkedIn (blue and white) and X (black and white) buttons appear together near the name, in About, in Contact, in the footer, and on the blog. Social URLs are centralized in `lib/site.ts`.
 
 
 ## Editorial and technical wording
@@ -72,7 +72,7 @@ The AI section includes an interactive four-step example (Understand, Explore, B
 
 ## External links
 
-LinkedIn is the only outbound follow/contact destination. The RSS follow link and X profile link have been removed, as has RSS autodiscovery metadata. The legacy `/feed.xml` URL redirects to LinkedIn. Same-page navigation, blog article links, and the privacy page remain internal.
+LinkedIn (`https://www.linkedin.com/in/justsid/`) and X (`https://x.com/sidharxhh`) are the outbound follow/contact destinations. RSS promotion and RSS autodiscovery metadata have been removed. The legacy `/feed.xml` URL redirects to LinkedIn. Same-page navigation, blog article links, and the privacy page remain internal.
 
 
 ## Blog waiting game
